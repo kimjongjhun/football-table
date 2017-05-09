@@ -1,0 +1,23 @@
+<div class="container-fluid">
+    <div class="jumbotron">
+        <div class="btn-group btn-group-justified btn-group-lg" role="group">
+            <a class="btn btn-primary" ui-sref="bundesliga" ng-click="vm.goTable(430)">Bundesliga</a>
+            <a class="btn btn-primary" ui-sref="laLiga" ng-click="vm.goTable(436)">La Liga</a>
+            <a class="btn btn-primary" ui-sref="ligue1" ng-click="vm.goTable(434)">Ligue 1</a>
+            <a class="btn btn-primary" ui-sref="premierLeague" ng-click="vm.goTable(426)">Premier League</a>
+            <a class="btn btn-primary" ui-sref="serieA" ng-click="vm.goTable(438)">Serie A</a>
+        </div>
+    </div>
+
+    <div ng-if="vm.views == 'table'">
+        <div ng-include="'app/components/table/table.html'"></div>
+    </div>
+
+    <div ng-if="vm.views == 'team'">
+        <div ng-include="'app/components/team/team.html'"></div>
+    </div>
+
+    <div ng-if="vm.views == 'error'">
+        <div ng-include="'app/components/error/error.html'"></div>
+    </div>
+</div>

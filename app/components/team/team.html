@@ -1,0 +1,47 @@
+<div class="col-sm-3 text-center">
+    <img src={{vm.as.selectedTeam.crestURI}} width="250">
+    <br/>
+    <br/>
+    <button class="btn btn-primary" type="button" ng-click="vm.goBack()">Back to League table</button>
+</div>
+<div class="col-sm-9">
+    <h1>{{vm.as.selectedTeam.teamName}}</h1>
+    <hr/>
+    <div class="row text-center">
+        <div class="col-sm-3">
+            <div class="jumbotron">
+                <p class="lead">{{vm.as.selectedTeam.position}}</p>
+                <p>Position</p>
+            </div>
+        </div>
+        <div class="col-sm-6">
+            <div class="jumbotron col-sm-4">
+                <p class="lead">{{vm.as.selectedTeam.wins}}</p>
+                <p>Wins</p>
+            </div>
+            <div class="jumbotron col-sm-4">
+                <p class="lead">{{vm.as.selectedTeam.draws}}</p>
+                <p>Draws</p>
+            </div>
+            <div class="jumbotron col-sm-4">
+                <p class="lead">{{vm.as.selectedTeam.losses}}</p>
+                <p>Losses</p>
+            </div>
+        </div>
+        <div class="col-sm-3">
+            <div class="jumbotron">
+                <p class="lead">{{vm.as.selectedTeam.points}}</p>
+                <p>Points</p>
+            </div>
+        </div>
+    </div>
+    <hr/>
+    <div class="row">
+        <div class="col-sm-6">
+            <div ng-include="'app/components/match/pastMatch.html'"></div>
+        </div>
+        <div class="col-sm-6">
+            <div ng-include="'app/components/match/futureMatch.html'"></div>
+        </div>
+    </div>
+</div>

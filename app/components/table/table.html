@@ -1,0 +1,25 @@
+<table class="table table-striped table-hover">
+    <thead>
+    <tr>
+        <th>Position</th>
+        <th>Team</th>
+        <th>Wins</th>
+        <th>Draws</th>
+        <th>Losses</th>
+        <th>Points</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr ng-repeat="team in vm.as.leagueTable" ng-click="vm.goTeam(team)" role="button">
+        <td>{{team.position}}</td>
+        <td class="text-left">
+            <img src="{{team.crestURI}}" width="20" height="20">
+            {{team.teamName}}
+        </td>
+        <td>{{team.wins}}</td>
+        <td>{{team.draws}}</td>
+        <td>{{team.losses}}</td>
+        <td>{{team.points}}</td>
+    </tr>
+    </tbody>
+</table>
