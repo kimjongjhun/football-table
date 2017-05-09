@@ -1,6 +1,6 @@
 # football-table
 
-Displays five of the top soccer league tables in Europe, 
+Displays five of the top soccer league tables in Europe: 
 Germany's Bundesliga, 
 Spain's La Liga,
 France's Ligue 1,
