@@ -5,6 +5,6 @@ Germany's Bundesliga,
 Spain's La Liga,
 France's Ligue 1,
 England's Premier League,
-Italy's Serie A.
+and Italy's Serie A.
 
 Clicking on a team will display that team's information.
