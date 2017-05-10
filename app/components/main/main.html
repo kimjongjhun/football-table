@@ -9,7 +9,7 @@
         </div>
     </div>
 
-    <div ng-if="vm.views == 'table'">
+<!--    <div ng-if="vm.views == 'table'">
         <div ng-include="'app/components/table/table.html'"></div>
     </div>
 
@@ -19,5 +19,9 @@
 
     <div ng-if="vm.views == 'error'">
         <div ng-include="'app/components/error/error.html'"></div>
+    </div>-->
+
+    <div ng-include="'app/components/{{vm.views}}.html'">
+
     </div>
 </div>
