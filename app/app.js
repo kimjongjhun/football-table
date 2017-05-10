@@ -11,7 +11,7 @@ function mainController(appService, footballdataFactory) {
     vm.as = appService;
     vm.fbdf = footballdataFactory;
 
-    vm.views = 'table/table';
+    vm.views;
 
     vm.league = vm.as.league;
     vm.leagueTable = vm.as.leagueTable;
@@ -24,17 +24,17 @@ function mainController(appService, footballdataFactory) {
 
 
     function goTable(id) {
-        vm.views = "table/table";
+        vm.views = "table";
         vm.as.goTable(id);
     }
 
     function goTeam(team) {
-        vm.views = "team/team";
+        vm.views = "team";
         vm.as.goTeam(team);
     }
 
     function goBack() {
-        vm.views = "table/table";
+        vm.views = "table";
     }
 
     function test() {
