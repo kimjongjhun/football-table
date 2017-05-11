@@ -18,7 +18,24 @@ function appService(footballdataFactory) {
     vm.pastCollection;
     vm.futureCollection;
     vm.squad;
-    vm.squadList = {};
+    vm.squadList = {
+        keeper: [],
+        defender: [{
+            cb: [],
+            lb: [],
+            rb: [],
+            fb: []
+        }],
+        midfield: [{
+            cm: [],
+            dm: []
+        }],
+        forward: [{
+            lw: [],
+            rw: [],
+            cf: [],
+        }]
+    };
 
     vm.formatInfo = formatInfo;
     vm.formatMatches = formatMatches;
@@ -31,7 +48,6 @@ function appService(footballdataFactory) {
     vm.test = test;
 
     function formatInfo() {
-
     }
 
     function formatMatches() {
@@ -48,35 +64,32 @@ function appService(footballdataFactory) {
     }
 
     function formatSquad() {
-        vm.squadList.gk = vm.squad.filter(function(value) {
-            return value.position == "Keeper"
+        vm.squadList.keeper = vm.squad.filter(function(value) {
+            return value.position === "Keeper"
         });
-        vm.squadList.mid = vm.squad.filter(function(value) {
-            return value.position == "Central Midfield"
+        vm.squadList.defender.cb = vm.squad.filter(function(value) {
+            return value.position === "Centre-Back"
         });
-        vm.squadList.def = vm.squad.filter(function(value) {
-            return value.position == "Centre-Back"
+        vm.squadList.defender.lb = vm.squad.filter(function(value) {
+            return value.position === "Left-Back"
         });
-        vm.squadList.def = vm.squad.filter(function(value) {
-            return value.position == "Left-Back"
+        vm.squadList.defender.rb = vm.squad.filter(function(value) {
+            return value.position === "Right-Back"
         });
-        vm.squadList.def = vm.squad.filter(function(value) {
-            return value.position == "Right-Back"
+        vm.squadList.midfield.cm = vm.squad.filter(function(value) {
+            return value.position === "Central Midfield"
         });
-        vm.squadList.mid = vm.squad.filter(function(value) {
-            return value.position == "Defensive Midfield"
+        vm.squadList.midfield.dm = vm.squad.filter(function(value) {
+            return value.position === "Defensive Midfield"
         });
-        vm.squadList.mid = vm.squad.filter(function(value) {
-            return value.position == "Central Midfield"
+        vm.squadList.forward.lw = vm.squad.filter(function(value) {
+            return value.position === "Left Wing"
         });
-        vm.squadList.for = vm.squad.filter(function(value) {
-            return value.position == "Left Wing"
+        vm.squadList.forward.rw = vm.squad.filter(function(value) {
+            return value.position === "Right Wing"
         });
-        vm.squadList.for = vm.squad.filter(function(value) {
-            return value.position == "Right Wing"
-        });
-        vm.squadList.for = vm.squad.filter(function(value) {
-            return value.position == "Centre-Forward"
+        vm.squadList.forward.cf = vm.squad.filter(function(value) {
+            return value.position === "Centre-Forward"
         });
     }
 
@@ -87,6 +100,7 @@ function appService(footballdataFactory) {
         }).then(function (_data) {
             console.log(_data.data.players);
             vm.squad = _data.data.players;
+            vm.formatSquad();
         });
 
     }
@@ -97,6 +111,7 @@ function appService(footballdataFactory) {
             apiKey: config.MY_KEY
         }).then(function (_data) {
             vm.teamMatches = _data.data.fixtures;
+            vm.formatMatches();
         });
     }
 
