@@ -9,6 +9,10 @@
         </div>
     </div>
 
+    <div ng-if="vm.views == 'landing'">
+        <div ng-include="'app/components/landing/landing.html'"></div>
+    </div>
+
     <div ng-if="vm.views == 'table'">
         <div ng-include="'app/components/table/table.html'"></div>
     </div>

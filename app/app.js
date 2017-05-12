@@ -11,7 +11,7 @@ function mainController(appService, footballdataFactory) {
     vm.as = appService;
     vm.fbdf = footballdataFactory;
 
-    vm.views;
+    vm.views = 'landing';
 
     vm.league = vm.as.league;
     vm.leagueTable = vm.as.leagueTable;

@@ -36,13 +36,18 @@ function appService(footballdataFactory) {
             cf: [],
         }]
     };
+    vm.keepers = [];
+    vm.defenders = [];
+    vm.midfielders = [];
+    vm.forwards = [];
 
     vm.formatInfo = formatInfo;
     vm.formatMatches = formatMatches;
     vm.formatSquad = formatSquad;
+    vm.formatSquadList = formatSquadList;
     vm.getSquad = getSquad;
-    vm.getTeamInfo = getTeamInfo;
     vm.goTable = goTable;
+    vm.getTeamInfo = getTeamInfo;
     vm.goTeam = goTeam;
     vm.setTeamId = setTeamId;
     vm.test = test;
@@ -51,10 +56,10 @@ function appService(footballdataFactory) {
     }
 
     function formatMatches() {
-        vm.pastMatches = vm.teamMatches.filter(function(value) {
+        vm.pastMatches = vm.teamMatches.filter(function (value) {
             return value.status == "FINISHED";
         });
-        vm.futureMatches = vm.teamMatches.filter(function(value) {
+        vm.futureMatches = vm.teamMatches.filter(function (value) {
             return value.status == "TIMED";
         });
 
@@ -64,33 +69,43 @@ function appService(footballdataFactory) {
     }
 
     function formatSquad() {
-        vm.squadList.keeper = vm.squad.filter(function(value) {
+        vm.squadList.keeper = vm.squad.filter(function (value) {
             return value.position === "Keeper"
         });
-        vm.squadList.defender.cb = vm.squad.filter(function(value) {
+        vm.squadList.defender.cb = vm.squad.filter(function (value) {
             return value.position === "Centre-Back"
         });
-        vm.squadList.defender.lb = vm.squad.filter(function(value) {
+        vm.squadList.defender.lb = vm.squad.filter(function (value) {
             return value.position === "Left-Back"
         });
-        vm.squadList.defender.rb = vm.squad.filter(function(value) {
+        vm.squadList.defender.rb = vm.squad.filter(function (value) {
             return value.position === "Right-Back"
         });
-        vm.squadList.midfield.cm = vm.squad.filter(function(value) {
+        vm.squadList.midfield.cm = vm.squad.filter(function (value) {
             return value.position === "Central Midfield"
         });
-        vm.squadList.midfield.dm = vm.squad.filter(function(value) {
+        vm.squadList.midfield.dm = vm.squad.filter(function (value) {
             return value.position === "Defensive Midfield"
         });
-        vm.squadList.forward.lw = vm.squad.filter(function(value) {
+        vm.squadList.forward.lw = vm.squad.filter(function (value) {
             return value.position === "Left Wing"
         });
-        vm.squadList.forward.rw = vm.squad.filter(function(value) {
+        vm.squadList.forward.rw = vm.squad.filter(function (value) {
             return value.position === "Right Wing"
         });
-        vm.squadList.forward.cf = vm.squad.filter(function(value) {
+        vm.squadList.forward.cf = vm.squad.filter(function (value) {
             return value.position === "Centre-Forward"
         });
+
+        vm.formatSquadList();
+    }
+
+    function formatSquadList() {
+        vm.keepers.concat(vm.squadList.keeper);
+        vm.defenders.concat(vm.squadList.defender.cb) /* , vm.squadList.defender.lb, vm.squadList.defender.rb)*/;
+        console.log(vm.defenders);
+        vm.midfielders.concat(vm.squadList.midfield.dm, vm.squadList.midfield.cm);
+        vm.forwards.concat(vm.squadList.forward.lw, vm.squadList.forward.rw, vm.squadList.forward.cf);
     }
 
     function getSquad(teamId) {
@@ -137,6 +152,7 @@ function appService(footballdataFactory) {
         // vm.teamId = team._links.team.href.substring(team._links.team.href.length - 2, team._links.team.href.length.length);
         vm.teamId = team._links.team.href.slice(38);
         vm.getTeamInfo(vm.teamId);
+        console.log(vm.teamId);
         vm.getSquad(vm.teamId);
         vm.formatInfo();
     }
