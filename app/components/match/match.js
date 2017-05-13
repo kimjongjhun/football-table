@@ -3,9 +3,7 @@
  */
 
 angular.module('footballApp')
-    .controller('MatchController', match);
-
-match.$inject('appService');
+    .controller('MatchController', ['appService', match]);
 
 function match(appService) {
     var vm = this;
