@@ -4,7 +4,9 @@
 angular.module('footballApp',
     ['ui.router', 'jtt_footballdata', 'smart-table'])
 
-    .controller('MainController', ['appService', 'footballdataFactory', mainController]);
+    .controller('MainController', mainController);
+
+mainController.$inject('appService', 'footballdataFactory')
 
 function mainController(appService, footballdataFactory) {
     var vm = this;

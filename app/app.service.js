@@ -2,7 +2,9 @@
  * Created by zlaqh on 5/8/17.
  */
 angular.module('footballApp')
-    .service('appService', ['footballdataFactory', appService]);
+    .service('appService', appService);
+
+appService.$inject = ['footballdataFactory'];
 
 function appService(footballdataFactory) {
     var vm = this;

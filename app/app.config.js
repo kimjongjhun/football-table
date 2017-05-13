@@ -3,7 +3,9 @@
  */
 
 angular.module('footballApp')
-    .config(['$stateProvider', routing]);
+    .config(routing);
+
+routing.$inject('$stateProvider');
 
 function routing($stateProvider) {
     $stateProvider
