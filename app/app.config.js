@@ -7,6 +7,10 @@ angular.module('footballApp')
 
 function routing($stateProvider) {
     $stateProvider
+        .state('home', {
+            url: '/home',
+            templateUrl: 'app/components/landing/landing.html'
+        })
         .state('bundesliga', {
             url: '/bundesliga',
             templateUrl: 'app/components/table/table.html'
