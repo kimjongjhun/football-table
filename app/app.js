@@ -18,10 +18,14 @@ function mainController(appService, footballdataFactory) {
     vm.selectedTeam = vm.as.selectedTeam;
 
     vm.goBack = goBack;
+    vm.goHome = goHome;
     vm.goTable = goTable;
     vm.goTeam = goTeam;
     vm.test = test;
 
+    function goHome() {
+        vm.views = 'landing';
+    }
 
     function goTable(id) {
         vm.views = "table";

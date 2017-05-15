@@ -10,6 +10,20 @@ function appService(footballdataFactory) {
     var vm = this;
     vm.fbdf = footballdataFactory;
 
+    vm.landingList = [
+        98, 57, 548,
+        78, 4, 81,
+        5, 108, 109, /*Alphabetized landingList*/
+        64, 66, 523,
+        524, 86, 12
+/*
+        "98", "57", "548",
+        "78", "4", "81",
+        "5", "108", "109", /!*Alphabetized landingList*!/
+        "64", "66", "523",
+        "524", "86", "12"*/
+    ];
+    vm.landingTeam =[];
     vm.league;
     vm.leagueTable;
     vm.selectedTeam;
@@ -50,7 +64,9 @@ function appService(footballdataFactory) {
     vm.getSquad = getSquad;
     vm.goTable = goTable;
     vm.getTeamInfo = getTeamInfo;
+    vm.getTeamMatches = getTeamMatches;
     vm.goTeam = goTeam;
+    vm.load = load;
     vm.setTeamId = setTeamId;
     vm.test = test;
 
@@ -70,6 +86,8 @@ function appService(footballdataFactory) {
         vm.futureCollection = vm.futureMatches;
     }
 
+    // @TODO
+    // fix formatSquad()
     function formatSquad() {
         vm.squadList.keeper = vm.squad.filter(function (value) {
             return value.position === "Keeper"
@@ -115,7 +133,6 @@ function appService(footballdataFactory) {
             id: teamId,
             apiKey: config.MY_KEY
         }).then(function (_data) {
-            console.log(_data.data.players);
             vm.squad = _data.data.players;
             vm.formatSquad();
         });
@@ -123,6 +140,15 @@ function appService(footballdataFactory) {
     }
 
     function getTeamInfo(teamId) {
+        vm.fbdf.getTeam({
+            id: teamId,
+            apiKey: config.MY_KEY
+        }).then(function (_data) {
+            vm.landingTeam.push(_data.data);
+        })
+    }
+
+    function getTeamMatches(teamId) {
         vm.fbdf.getFixturesByTeam({
             id: teamId,
             apiKey: config.MY_KEY
@@ -150,10 +176,21 @@ function appService(footballdataFactory) {
         vm.selectedTeam = team;
     }
 
+    function load() {
+        // for (var a in vm.landingList) {
+        //     console.log(a);
+        //     vm.getTeamInfo(a);
+        // };
+        vm.landingTeam=[];
+
+        vm.landingList.forEach(function (p1) {
+           vm.getTeamInfo(p1);
+        });
+    }
+
     function setTeamId(team) {
-        // vm.teamId = team._links.team.href.substring(team._links.team.href.length - 2, team._links.team.href.length.length);
         vm.teamId = team._links.team.href.slice(38);
-        vm.getTeamInfo(vm.teamId);
+        vm.getTeamMatches(vm.teamId);
         console.log(vm.teamId);
         vm.getSquad(vm.teamId);
         vm.formatInfo();
