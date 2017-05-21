@@ -16,14 +16,18 @@ function appService(footballdataFactory) {
         5, 108, 109, /*Alphabetized landingList*/
         64, 66, 523,
         524, 86, 12
-/*
-        "98", "57", "548",
-        "78", "4", "81",
-        "5", "108", "109", /!*Alphabetized landingList*!/
-        "64", "66", "523",
-        "524", "86", "12"*/
+        /*
+         "98", "57", "548",
+         "78", "4", "81",
+         "5", "108", "109", /!*Alphabetized landingList*!/
+         "64", "66", "523",
+         "524", "86", "12"*/
     ];
-    vm.landingTeam =[];
+    vm.landingTeam = {
+        id: "",
+        crestUrl: ""
+    };
+    vm.landingTeam = [];
     vm.league;
     vm.leagueTable;
     vm.selectedTeam;
@@ -144,6 +148,10 @@ function appService(footballdataFactory) {
             id: teamId,
             apiKey: config.MY_KEY
         }).then(function (_data) {
+            /*
+             vm.landingTeam.id.push(teamId);
+             vm.landingTeam.crestUrl.push(_data.data);
+             */
             vm.landingTeam.push(_data.data);
         })
     }
@@ -160,7 +168,6 @@ function appService(footballdataFactory) {
 
     function goTable(id) {
         vm.league = id;
-        //Show League Table / current standing.
         vm.fbdf.getLeagueTableBySeason({
             id: vm.league,
             apiKey: config.MY_KEY
@@ -181,10 +188,14 @@ function appService(footballdataFactory) {
         //     console.log(a);
         //     vm.getTeamInfo(a);
         // };
-        vm.landingTeam=[];
+
+        // vm.landingTeam = [{
+        //     id: [],
+        //     crestUrl: []
+        // }];
 
         vm.landingList.forEach(function (p1) {
-           vm.getTeamInfo(p1);
+            vm.getTeamInfo(p1);
         });
     }
 
