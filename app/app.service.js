@@ -21,7 +21,8 @@ function appService(footballdataFactory) {
          "78", "4", "81",
          "5", "108", "109", /!*Alphabetized landingList*!/
          "64", "66", "523",
-         "524", "86", "12"*/
+         "524", "86", "12"
+         */
     ];
     vm.landingTeam = {
         id: "",
@@ -144,16 +145,18 @@ function appService(footballdataFactory) {
     }
 
     function getTeamInfo(teamId) {
+        var team = {
+            id: '',
+            crestUrl: ''
+        };
         vm.fbdf.getTeam({
             id: teamId,
             apiKey: config.MY_KEY
         }).then(function (_data) {
-            /*
-             vm.landingTeam.id.push(teamId);
-             vm.landingTeam.crestUrl.push(_data.data);
-             */
-            vm.landingTeam.push(_data.data);
-        })
+            team.id = teamId;
+            team.crestUrl = _data.data.crestUrl;
+            vm.landingTeam.push(team);
+        });
     }
 
     function getTeamMatches(teamId) {
@@ -179,24 +182,18 @@ function appService(footballdataFactory) {
     }
 
     function goTeam(team) {
-        vm.setTeamId(team);
+        if (typeof team != 'number') {
+            vm.setTeamId(team);
+        }
+        vm.getTeamMatches(team);
         vm.selectedTeam = team;
     }
 
     function load() {
-        // for (var a in vm.landingList) {
-        //     console.log(a);
-        //     vm.getTeamInfo(a);
-        // };
-
-        // vm.landingTeam = [{
-        //     id: [],
-        //     crestUrl: []
-        // }];
-
         vm.landingList.forEach(function (p1) {
             vm.getTeamInfo(p1);
         });
+        console.log(vm.landingTeam);
     }
 
     function setTeamId(team) {
