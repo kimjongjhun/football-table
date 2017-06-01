@@ -11,7 +11,7 @@ function mainController(appService, footballdataFactory) {
     vm.as = appService;
     vm.fbdf = footballdataFactory;
 
-    vm.views = 'landing';
+    vm.views = "landing";
 
     vm.league = vm.as.league;
     vm.leagueTable = vm.as.leagueTable;
@@ -21,10 +21,9 @@ function mainController(appService, footballdataFactory) {
     vm.goHome = goHome;
     vm.goTable = goTable;
     vm.goTeam = goTeam;
-    vm.test = test;
 
     function goHome() {
-        vm.views = 'landing';
+        vm.views = "landing";
     }
 
     function goTable(id) {
@@ -39,9 +38,5 @@ function mainController(appService, footballdataFactory) {
 
     function goBack() {
         vm.views = "table";
-    }
-
-    function test() {
-        console.log('test');
     }
 }

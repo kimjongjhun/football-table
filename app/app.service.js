@@ -16,13 +16,6 @@ function appService(footballdataFactory) {
         5, 108, 109, /*Alphabetized landingList*/
         64, 66, 523,
         524, 86, 12
-        /*
-         "98", "57", "548",
-         "78", "4", "81",
-         "5", "108", "109", /!*Alphabetized landingList*!/
-         "64", "66", "523",
-         "524", "86", "12"
-         */
     ];
     vm.landingTeam = {
         id: "",
