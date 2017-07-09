@@ -46,11 +46,8 @@ angular.module("jtt_footballdata", [])
 
             return $http({
                 method: 'GET',
-                url: searchData.url,
-                params: searchData.object,
-                headers: {
-                    'X-Auth-Token': _params.apiKey ? _params.apiKey : apiKey,
-                }
+                url: '/api/teams?teamId=' + _params.id
+                //params: searchData.object,
             });
         };
 
@@ -96,17 +93,19 @@ angular.module("jtt_footballdata", [])
             });
         };
 
+
+
         footballdataFactory.getFixturesByTeam = function (_params) {
 
             var searchData = footballdataSearchDataService.getNew("getFixturesByTeam", _params);
 
             return $http({
                 method: 'GET',
-                url: searchData.url,
-                params: searchData.object,
+                url: '/api/matches?teamId=' + _params.teamId
+/*                params: searchData.object,
                 headers: {
                     'X-Auth-Token': _params.apiKey ? _params.apiKey : apiKey,
-                }
+                }*/
             });
         };
 

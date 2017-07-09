@@ -4,9 +4,9 @@
 angular.module('footballApp',
     ['ui.router', 'jtt_footballdata', 'smart-table'])
 
-    .controller('MainController', ['appService', 'footballdataFactory', mainController]);
+    .controller('MainController', ['$state','appService', 'footballdataFactory', mainController]);
 
-function mainController(appService, footballdataFactory) {
+function mainController($state, appService, footballdataFactory) {
     var vm = this;
     vm.as = appService;
     vm.fbdf = footballdataFactory;
@@ -27,16 +27,18 @@ function mainController(appService, footballdataFactory) {
     }
 
     function goTable(id) {
-        vm.views = "table";
-        vm.as.goTable(id);
+        console.log(id);
+        $state.go('league', {id: id});
     }
 
     function goTeam(team) {
-        vm.views = "team";
-        vm.as.goTeam(team);
+        console.log('should not run');
+        // $state.go('league', {id: team});
     }
 
     function goBack() {
         vm.views = "table";
     }
+
+    $state.go('home');
 }

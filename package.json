@@ -1,0 +1,28 @@
+{
+  "name": "football-table",
+  "version": "1.0.0",
+  "description": "Displays five of the top soccer league tables in Europe:  Germany's Bundesliga,  Spain's La Liga, France's Ligue 1, England's Premier League, and Italy's Serie A.",
+  "main": "server/app.js",
+  "scripts": {
+    "start": "node server/app.js",
+    "start-dev":"node_modules/nodemon/bin/nodemon.js server/app.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/kimjongjhun/football-table.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/kimjongjhun/football-table/issues"
+  },
+  "homepage": "https://github.com/kimjongjhun/football-table#readme",
+  "dependencies": {
+    "express": "^4.15.3",
+    "request": "^2.81.0"
+  },
+  "devDependencies": {
+    "nodemon": "^1.11.0"
+  }
+}

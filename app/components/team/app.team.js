@@ -3,9 +3,19 @@
  */
 
 angular.module('footballApp')
+    .controller('TeamController', ['teaminfo', teamController]);
 
-    .controller('TeamController', [teamController]);
+function teamController(teaminfo) {
+    var vm = this;
 
-function teamController() {
+    angular.extend(vm, {
+        selectedTeam: teaminfo
+    });
 
+    function load() {
+        vm.selectedTeam = teaminfo;
+        vm.selectedTeam.teamId = vm.selectedTeam._links.team.href.slice(38);
+    }
+
+    load();
 }

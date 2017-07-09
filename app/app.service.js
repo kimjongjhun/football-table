@@ -10,6 +10,11 @@ function appService(footballdataFactory) {
     var vm = this;
     vm.fbdf = footballdataFactory;
 
+    // Changed
+    vm.teamID;
+
+
+    // Still need to change
     vm.landingList = [
         98, 57, 548,
         78, 4, 81,
@@ -63,6 +68,8 @@ function appService(footballdataFactory) {
     vm.goTable = goTable;
     vm.getTeamInfo = getTeamInfo;
     vm.getTeamMatches = getTeamMatches;
+    vm.getCurrentMatches = getCurrentMatches;
+
     vm.goTeam = goTeam;
     vm.load = load;
     vm.setTeamId = setTeamId;
@@ -78,10 +85,17 @@ function appService(footballdataFactory) {
         vm.futureMatches = vm.teamMatches.filter(function (value) {
             return value.status == "TIMED";
         });
+        vm.futureMatches = vm.teamMatches.filter(function (value) {
+            return value.status == null;
+        });
 
         vm.pastMatches = vm.pastMatches.reverse();
         vm.pastCollection = vm.pastMatches;
         vm.futureCollection = vm.futureMatches;
+    }
+
+    function getCurrentMatches(){
+        console.log(vm);
     }
 
     // @TODO
@@ -149,12 +163,13 @@ function appService(footballdataFactory) {
             team.id = teamId;
             team.crestUrl = _data.data.crestUrl;
             vm.landingTeam.push(team);
+            console.log('here in getTeamInfo ');
         });
     }
 
     function getTeamMatches(teamId) {
         vm.fbdf.getFixturesByTeam({
-            id: teamId,
+            teamId: teamId,
             apiKey: config.MY_KEY
         }).then(function (_data) {
             vm.teamMatches = _data.data.fixtures;
@@ -176,16 +191,26 @@ function appService(footballdataFactory) {
 
     function goTeam(team) {
         if (typeof team != 'number') {
+            console.log('help');
             vm.setTeamId(team);
+        } else {
+            console.log('i am chapi');
+            vm.getTeamMatches(team);
+            vm.selectedTeam = team;
+            console.log('team',vm.selectedTeam);
+
         }
-        vm.getTeamMatches(team);
-        vm.selectedTeam = team;
     }
 
     function load() {
-        vm.landingList.forEach(function (p1) {
-            vm.getTeamInfo(p1);
-        });
+
+        if (vm.landingTeam.length < 15) {
+            vm.landingTeam = [];
+            vm.landingList.forEach(function (p1) {
+                vm.getTeamInfo(p1);
+            });
+        }
+
         console.log(vm.landingTeam);
     }
 

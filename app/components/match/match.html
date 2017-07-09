@@ -1,0 +1,35 @@
+<div class="text-center">
+    <h3>{{$ctrl.type | uppercase}} MATCHES</h3>
+
+    <div ng-show="$ctrl.matches.length">
+        <table st-table="$ctrl.matches" st-safe-src="$ctrl.futureCollection" class="table table-striped">
+            <thead>
+            <tr>
+                <th>Date</th>
+                <th>Home</th>
+                <th>:</th>
+                <th>Away</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr ng-repeat="match in $ctrl.matches">
+                <td>{{match.date | date: "shortDate"}}</td>
+                <td>{{match.homeTeamName}}</td>
+                <td>:</td>
+                <td>{{match.awayTeamName}}</td>
+            </tr>
+            </tbody>
+            <tfoot>
+            <tr>
+                <td colspan="6" class="text-center">
+                    <div st-pagination="" st-items-by-page="10" st-displayed-pages="7"></div>
+                </td>
+            </tr>
+            </tfoot>
+        </table>
+    </div>
+
+    <div ng-show="!$ctrl.matches.length">
+        <h3>No Matches Found</h3>
+    </div>
+</div>

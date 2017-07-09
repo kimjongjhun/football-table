@@ -6,8 +6,12 @@ angular.module('footballApp')
 
     .service('landingService', landingService);
 
-landingService.$inject = [];
+landingService.$inject = ['footballdataFactory', 'appService'];
 
 function landingService() {
+    var vm = this;
+    vm.fbdf = footballdataFactory;
+    vm.as = appService;
+
 
 }

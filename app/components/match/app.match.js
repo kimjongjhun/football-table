@@ -3,9 +3,26 @@
  */
 
 angular.module('footballApp')
+    .component('matchTable', {
+        bindings: {
+            teamId: '<',
+            type: '<'
+        },
+        controller: ['matchService', matchController],
+        templateUrl: './components/match/match.html'
+    });
 
-    .controller('MatchController', [matchController]);
+function matchController(matchService) {
+    var vm = this;
 
-function matchController() {
+    angular.extend(vm, {
+        $onInit: $onInit
+    });
 
+    function $onInit() {
+        matchService.getTeamMatches(vm.teamId, vm.type)
+            .then(function (data) {
+                vm.matches = data;
+            })
+    }
 }
