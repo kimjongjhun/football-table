@@ -3,13 +3,15 @@
  */
 
 angular.module('footballApp')
-    .controller('TeamController', ['teaminfo', teamController]);
+    .controller('TeamController', ['$state', 'appService', 'teaminfo', teamController]);
 
-function teamController(teaminfo) {
+function teamController($state, appService, teaminfo) {
     var vm = this;
+    vm.id = appService.leagueCode;
 
     angular.extend(vm, {
-        selectedTeam: teaminfo
+        selectedTeam: teaminfo,
+        goBack: goBack
     });
 
     function load() {
@@ -18,4 +20,11 @@ function teamController(teaminfo) {
     }
 
     load();
+
+    function goBack() {
+        // vm.views = "table";
+        console.log('go back button');
+        console.log(id);
+        $state.go('league', {id: id});
+    }
 }

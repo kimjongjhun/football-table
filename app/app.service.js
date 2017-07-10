@@ -13,6 +13,8 @@ function appService(footballdataFactory) {
     // Changed
     vm.teamID;
 
+    // Experimental
+    vm.leagueCode = 0;
 
     // Still need to change
     vm.landingList = [

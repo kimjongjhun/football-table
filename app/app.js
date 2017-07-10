@@ -28,6 +28,7 @@ function mainController($state, appService, footballdataFactory) {
 
     function goTable(id) {
         console.log(id);
+        vm.as.leagueCode = id;
         $state.go('league', {id: id});
     }
 
@@ -36,8 +37,10 @@ function mainController($state, appService, footballdataFactory) {
         // $state.go('league', {id: team});
     }
 
-    function goBack() {
-        vm.views = "table";
+    function goBack(id) {
+        // vm.views = "table";
+        console.log('go back button');
+        $state.go('league', {id: id});
     }
 
     $state.go('home');

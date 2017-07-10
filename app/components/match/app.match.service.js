@@ -17,7 +17,7 @@ function matchService(footballdataFactory, appService) {
     function getTeamMatches(teamId, type) {
         return footballdataFactory.getFixturesByTeam({
             teamId: teamId,
-            apiKey: 'c686861cae884c8596fad08aea92403c'
+            // apiKey: 'c686861cae884c8596fad08aea92403c'
         }).then(function (_data) {
             if (type === 'past') {
                 return _data.data.fixtures.filter(function (value) {
