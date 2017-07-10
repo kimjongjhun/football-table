@@ -5,6 +5,8 @@ const app = express();
 app.use(express.static('app'));
 app.use("/assets", express.static('assets'));
 
+require('./api/teams/index')(app);
+
 app.get('/', function (req, res) {
     res.sendFile("index.html", { root: '/' + "app" });
 });
