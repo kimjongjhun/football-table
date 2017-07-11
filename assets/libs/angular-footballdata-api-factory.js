@@ -40,6 +40,7 @@ angular.module("jtt_footballdata", [])
             });
         };
 
+        // DONE
         footballdataFactory.getTeam = function (_params) {
 
             var searchData = footballdataSearchDataService.getNew("getTeam", _params);
@@ -51,6 +52,8 @@ angular.module("jtt_footballdata", [])
             });
         };
 
+        // @TODO
+        // In server app.js, NOT COMPLETE
         footballdataFactory.getPlayersByTeam = function (_params) {
 
             var searchData = footballdataSearchDataService.getNew("getPlayersByTeam", _params);
@@ -94,7 +97,7 @@ angular.module("jtt_footballdata", [])
         };
 
 
-
+        // DONE
         footballdataFactory.getFixturesByTeam = function (_params) {
 
             var searchData = footballdataSearchDataService.getNew("getFixturesByTeam", _params);
@@ -123,6 +126,8 @@ angular.module("jtt_footballdata", [])
             });
         };
 
+        // @TODO
+        // Not in server app.js
         footballdataFactory.getLeagueTableBySeason = function (_params) {
 
             var searchData = footballdataSearchDataService.getNew("getLeagueTableBySeason", _params);
