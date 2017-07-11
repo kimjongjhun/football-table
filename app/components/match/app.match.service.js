@@ -19,11 +19,11 @@ function matchService(footballdataFactory, appService) {
             teamId: teamId,
             // apiKey: 'c686861cae884c8596fad08aea92403c'
         }).then(function (_data) {
-            if (type === 'past') {
+            if (type === 'Past') {
                 return _data.data.fixtures.filter(function (value) {
                     return value.status === 'FINISHED';
                 }).reverse();
-            } else if (type === 'future'){
+            } else if (type === 'Future'){
                 return _data.data.fixtures.filter(function (value) {
                     return value.status === 'TIMED' || value.status == null;
                 });

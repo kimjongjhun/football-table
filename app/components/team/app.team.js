@@ -23,8 +23,8 @@ function teamController($state, appService, teaminfo) {
 
     function goBack() {
         // vm.views = "table";
-        console.log('go back button');
-        console.log(id);
-        $state.go('league', {id: id});
+        console.log('go back button 2');
+        console.log(vm.id);
+        $state.go('league', {id: vm.id});
     }
 }
