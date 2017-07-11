@@ -6,9 +6,9 @@ angular.module('footballApp')
 
 .service('matchService', matchService);
 
-matchService.$inject = ['footballdataFactory', 'appService'];
+matchService.$inject = ['footballdataFactory'];
 
-function matchService(footballdataFactory, appService) {
+function matchService(footballdataFactory) {
     var service = {};
     angular.extend(service, {
         getTeamMatches: getTeamMatches
@@ -16,8 +16,7 @@ function matchService(footballdataFactory, appService) {
 
     function getTeamMatches(teamId, type) {
         return footballdataFactory.getFixturesByTeam({
-            teamId: teamId,
-            // apiKey: 'c686861cae884c8596fad08aea92403c'
+            teamId: teamId
         }).then(function (_data) {
             if (type === 'Past') {
                 return _data.data.fixtures.filter(function (value) {

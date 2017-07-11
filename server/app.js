@@ -11,6 +11,7 @@ app.get('/', function (req, res) {
     res.sendFile("index.html", {root: '/' + "app"});
 });
 
+// For the landing page
 app.get('/api/teams', function (req, res) {
     return request({
         method: 'GET',
@@ -28,6 +29,7 @@ app.get('/api/teams', function (req, res) {
     });
 });
 
+// For past and future match lists
 app.get('/api/matches', function (req, res) {
     return request({
         method: 'GET',
@@ -58,6 +60,18 @@ app.get('/api/players', function (req, res) {
         if (err) {
             res.error(err);
         }
+        res.json(JSON.parse(obj.body));
+    })
+});
+
+app.get('/api/leagues', function (req, res) {
+    return request({
+        method: 'GET',
+        uri: 'http://api.football-data.org/v1/soccerseasons/' + req.query.id + '/leagueTable?apiKey=c686861cae884c8596fad08aea92403c',
+        headers: {
+            'X-Auth-Token': 'c686861cae884c8596fad08aea92403c'
+        }
+    }, function (err, obj) {
         res.json(JSON.parse(obj.body));
     })
 });

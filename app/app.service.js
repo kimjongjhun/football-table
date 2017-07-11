@@ -4,9 +4,9 @@
 angular.module('footballApp')
     .service('appService', appService);
 
-appService.$inject = ['footballdataFactory'];
+appService.$inject = ['footballdataFactory', 'tableService'];
 
-function appService(footballdataFactory) {
+function appService(footballdataFactory, tableService) {
     var vm = this;
     vm.fbdf = footballdataFactory;
 
@@ -69,7 +69,6 @@ function appService(footballdataFactory) {
     vm.getSquad = getSquad;
     vm.goTable = goTable;
     vm.getTeamInfo = getTeamInfo;
-    vm.getTeamMatches = getTeamMatches;
     vm.getCurrentMatches = getCurrentMatches;
 
     vm.goTeam = goTeam;
@@ -96,7 +95,7 @@ function appService(footballdataFactory) {
         vm.futureCollection = vm.futureMatches;
     }
 
-    function getCurrentMatches(){
+    function getCurrentMatches() {
         console.log(vm);
     }
 
@@ -142,6 +141,8 @@ function appService(footballdataFactory) {
         vm.forwards.concat(vm.squadList.forward.lw, vm.squadList.forward.rw, vm.squadList.forward.cf);
     }
 
+    // @TODO
+    // move server side
     function getSquad(teamId) {
         vm.fbdf.getPlayersByTeam({
             id: teamId,
@@ -165,21 +166,20 @@ function appService(footballdataFactory) {
             team.id = teamId;
             team.crestUrl = _data.data.crestUrl;
             vm.landingTeam.push(team);
-            console.log('here in getTeamInfo ');
-        });
-    }
-
-    function getTeamMatches(teamId) {
-        vm.fbdf.getFixturesByTeam({
-            teamId: teamId,
-            apiKey: config.MY_KEY
-        }).then(function (_data) {
-            vm.teamMatches = _data.data.fixtures;
-            vm.formatMatches();
         });
     }
 
     function goTable(id) {
+        vm.league = id;
+
+        return footballdataFactory.getLeagueTableBySeason({
+            leagueId: id
+        }).then(function (_data) {
+            console.log(_data.data);
+        });
+    }
+
+/*    function goTable(id) {
         vm.league = id;
         vm.fbdf.getLeagueTableBySeason({
             id: vm.league,
@@ -189,7 +189,7 @@ function appService(footballdataFactory) {
         }).catch(function (_data) {
 
         });
-    }
+    }*/
 
     function goTeam(team) {
         if (typeof team != 'number') {
@@ -199,7 +199,7 @@ function appService(footballdataFactory) {
             console.log('i am chapi');
             vm.getTeamMatches(team);
             vm.selectedTeam = team;
-            console.log('team',vm.selectedTeam);
+            console.log('team', vm.selectedTeam);
 
         }
     }
@@ -212,8 +212,6 @@ function appService(footballdataFactory) {
                 vm.getTeamInfo(p1);
             });
         }
-
-        console.log(vm.landingTeam);
     }
 
     function setTeamId(team) {

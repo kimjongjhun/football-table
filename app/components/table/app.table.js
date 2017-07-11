@@ -17,11 +17,4 @@ function tableController($state, TableData) {
         var id = team._links.team.href.slice(38);
         $state.go('team', {id:id, teaminfo: team});
     }
-
-    function load(){
-        console.log('loaded table', vm);
-        console.log(TableData);
-    }
-
-    load();
 }

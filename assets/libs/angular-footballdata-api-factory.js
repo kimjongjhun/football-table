@@ -96,7 +96,7 @@ angular.module("jtt_footballdata", [])
             });
         };
 
-
+        // For past and future matches
         // DONE
         footballdataFactory.getFixturesByTeam = function (_params) {
 
@@ -127,7 +127,23 @@ angular.module("jtt_footballdata", [])
         };
 
         // @TODO
-        // Not in server app.js
+        // In server app.js, NOT COMPLETE
+        footballdataFactory.getLeagueTableBySeason = function (_params) {
+
+            var searchData = footballdataSearchDataService.getNew("getLeagueTableBySeason", _params);
+
+            console.log('league code', _params.id);
+            return $http({
+                method: 'GET',
+                url: '/api/leagues?leagueId=' + _params.id
+/*              params: searchData.object,
+                headers: {
+                    'X-Auth-Token': _params.apiKey ? _params.apiKey : apiKey,
+                }*/
+            });
+        };
+/*
+
         footballdataFactory.getLeagueTableBySeason = function (_params) {
 
             var searchData = footballdataSearchDataService.getNew("getLeagueTableBySeason", _params);
@@ -141,6 +157,7 @@ angular.module("jtt_footballdata", [])
                 }
             });
         };
+*/
 
         footballdataFactory.getFixturesBySeason = function (_params) {
 

@@ -7,11 +7,11 @@ angular.module('footballApp')
         bindings: {
 
         },
-        controller: controller,
+        controller: ['squadService', controller],
         templateUrl: './components/squad/squad.html'
     });
 
-function controller() {
+function controller(squadService) {
     var vm = this;
 
     angular.extend(vm, {
@@ -19,6 +19,6 @@ function controller() {
     });
 
     function $onInit() {
-        console.log('i have init');
+        squadService.getPlayers();
     }
 }

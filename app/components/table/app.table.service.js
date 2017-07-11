@@ -6,9 +6,9 @@ angular.module('footballApp')
 
     .service('tableService', tableService);
 
-tableService.$inject = ['footballdataFactory', 'appService'];
+tableService.$inject = ['footballdataFactory'];
 
-function tableService(footballdataFactory, appService) {
+function tableService(footballdataFactory) {
     var service = {};
     angular.extend(service, {
         getLeagueData: getLeagueData
