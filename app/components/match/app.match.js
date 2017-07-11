@@ -23,6 +23,7 @@ function matchController(matchService) {
         matchService.getTeamMatches(vm.teamId, vm.type)
             .then(function (data) {
                 vm.matches = data;
+                vm.matchCollection = data;
             })
     }
 }
