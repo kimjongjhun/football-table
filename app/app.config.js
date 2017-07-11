@@ -9,7 +9,9 @@ function routing($stateProvider) {
     $stateProvider
         .state('home', {
             url: '/home',
-            templateUrl: 'components/landing/landing.html'
+            templateUrl: 'components/landing/landing.html',
+            controller: 'MainController',
+            controllerAs: 'vm'
         })
         .state('league', {
             url: '/league/:id',

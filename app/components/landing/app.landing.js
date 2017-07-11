@@ -4,8 +4,17 @@
 
 angular.module('footballApp')
 
-    .controller('LandingController', [landingController]);
+    .controller('LandingController', ['landingService', landingController]);
 
-function landingController() {
+function landingController(landingService) {
+
+    var vm = this;
+
+    vm.test = test;
+
+    function test(teamID) {
+        console.log(teamID, 'here in controller');
+    }
+
 
 }
