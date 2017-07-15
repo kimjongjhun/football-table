@@ -15,9 +15,10 @@ function tableService(footballdataFactory) {
     });
 
     function getLeagueData(id){
+        console.log('in app table service');
         return footballdataFactory.getLeagueTableBySeason({
-            id: id,
-            apiKey: 'c686861cae884c8596fad08aea92403c'
+            id: id
+            // apiKey: 'c686861cae884c8596fad08aea92403c'
         }).then(function (_data) {
             return _data.data.standing;
         })

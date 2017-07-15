@@ -142,7 +142,7 @@ function appService(footballdataFactory, tableService) {
     }
 
     // @TODO
-    // move server side
+    // In server app.js, NOT COMPLETE
     function getSquad(teamId) {
         vm.fbdf.getPlayersByTeam({
             id: teamId,
@@ -171,7 +171,7 @@ function appService(footballdataFactory, tableService) {
 
     function goTable(id) {
         vm.league = id;
-
+        console.log('in app service');
         return footballdataFactory.getLeagueTableBySeason({
             leagueId: id
         }).then(function (_data) {

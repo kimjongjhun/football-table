@@ -20,6 +20,7 @@ function routing($stateProvider) {
             controllerAs: 'vm',
             resolve: {
                 TableData: function($stateParams, tableService) {
+                    console.log('in app.config', $stateParams.id);
                     return tableService.getLeagueData($stateParams.id);
                 }
             }
@@ -34,5 +35,12 @@ function routing($stateProvider) {
                     return $stateParams.teaminfo;
                 }
             }
+        })
+        .state('error', {
+            url: '/error/:id/',
+            templateUrl: 'components/error/error.html',
+            controller: 'MainController',
+            controllerAs: 'vm'
+
         })
 }

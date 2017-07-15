@@ -1,12 +1,13 @@
 <div class="container-fluid">
     <div class="jumbotron">
         <div class="btn-group btn-group-justified btn-group-lg" role="group">
-            <a class="btn btn-primary" ui-sref="home" ng-click="vm.goHome()">Home</a>
+            <a class="btn btn-primary" ng-click="vm.goHome()">Home</a>
             <a class="btn btn-primary" ng-click="vm.goTable(452)">Bundesliga</a>
             <a class="btn btn-primary" ng-click="vm.goTable(436)">La Liga</a>
             <a class="btn btn-primary" ng-click="vm.goTable(450)">Ligue 1</a>
             <a class="btn btn-primary" ng-click="vm.goTable(445)">Premier League</a>
             <a class="btn btn-primary" ng-click="vm.goTable(438)">Serie A</a>
+            <a class="btn btn-primary" ng-click="vm.test()">TESTING</a>
         </div>
     </div>
 
@@ -25,9 +26,9 @@
         <!--<div ng-controller="TeamController as teamC" ng-include="'components/team/team.html'"></div>-->
     <!--</div>-->
 
-    <div ng-if="vm.views == 'error'">
-        <div ng-include="'components/error/error.html'"></div>
-    </div>
+    <!--<div ng-if="vm.views == 'error'">-->
+        <!--<div ng-include="'components/error/error.html'"></div>-->
+    <!--</div>-->
 
 
     </div>

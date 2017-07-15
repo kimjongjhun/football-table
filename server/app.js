@@ -64,6 +64,8 @@ app.get('/api/players', function (req, res) {
     })
 });
 
+// @TODO
+// Get this working
 app.get('/api/leagues', function (req, res) {
     return request({
         method: 'GET',
