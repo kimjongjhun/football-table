@@ -26,20 +26,6 @@ angular.module("jtt_footballdata", [])
             });
         };
 
-        footballdataFactory.getSeason = function (_params) {
-
-            var searchData = footballdataSearchDataService.getNew("getSeason", _params);
-
-            return $http({
-                method: 'GET',
-                url: searchData.url,
-                params: searchData.object,
-                headers: {
-                    'X-Auth-Token': _params.apiKey,
-                }
-            });
-        };
-
         // DONE
         footballdataFactory.getTeam = function (_params) {
 
@@ -49,6 +35,22 @@ angular.module("jtt_footballdata", [])
                 method: 'GET',
                 url: '/api/teams?teamId=' + _params.id
                 //params: searchData.object,
+            });
+        };
+
+        // For past and future matches
+        // DONE
+        footballdataFactory.getFixturesByTeam = function (_params) {
+
+            var searchData = footballdataSearchDataService.getNew("getFixturesByTeam", _params);
+
+            return $http({
+                method: 'GET',
+                url: '/api/matches?teamId=' + _params.teamId
+                /*                params: searchData.object,
+                 headers: {
+                 'X-Auth-Token': _params.apiKey ? _params.apiKey : apiKey,
+                 }*/
             });
         };
 
@@ -64,6 +66,51 @@ angular.module("jtt_footballdata", [])
                 params: searchData.object,
                 headers: {
                     'X-Auth-Token': _params.apiKey ? _params.apiKey : apiKey,
+                }
+            });
+        };
+
+        // @TODO
+        // In server app.js, NOT COMPLETE
+        footballdataFactory.getLeagueTableBySeason = function (_params) {
+
+            var searchData = footballdataSearchDataService.getNew("getLeagueTableBySeason", _params);
+
+            console.log('league code', _params.id);
+            return $http({
+                method: 'GET',
+                url: '/api/leagues?leagueId=' + _params.id
+                /*              params: searchData.object,
+                 headers: {
+                 'X-Auth-Token': _params.apiKey ? _params.apiKey : apiKey,
+                 }*/
+            });
+        };
+
+        /*
+         footballdataFactory.getLeagueTableBySeason = function (_params) {
+         var searchData = footballdataSearchDataService.getNew("getLeagueTableBySeason", _params);
+         return $http({
+         method: 'GET',
+         url: searchData.url,
+         params: searchData.object,
+         headers: {
+         'X-Auth-Token': _params.apiKey ? _params.apiKey : apiKey,
+         }
+         });
+         };
+         */
+
+        footballdataFactory.getSeason = function (_params) {
+
+            var searchData = footballdataSearchDataService.getNew("getSeason", _params);
+
+            return $http({
+                method: 'GET',
+                url: searchData.url,
+                params: searchData.object,
+                headers: {
+                    'X-Auth-Token': _params.apiKey,
                 }
             });
         };
@@ -96,22 +143,6 @@ angular.module("jtt_footballdata", [])
             });
         };
 
-        // For past and future matches
-        // DONE
-        footballdataFactory.getFixturesByTeam = function (_params) {
-
-            var searchData = footballdataSearchDataService.getNew("getFixturesByTeam", _params);
-
-            return $http({
-                method: 'GET',
-                url: '/api/matches?teamId=' + _params.teamId
-                /*                params: searchData.object,
-                 headers: {
-                 'X-Auth-Token': _params.apiKey ? _params.apiKey : apiKey,
-                 }*/
-            });
-        };
-
         footballdataFactory.getTeamsBySeason = function (_params) {
 
             var searchData = footballdataSearchDataService.getNew("getTeamsBySeason", _params);
@@ -125,36 +156,6 @@ angular.module("jtt_footballdata", [])
                 }
             });
         };
-
-        // @TODO
-        // In server app.js, NOT COMPLETE
-        footballdataFactory.getLeagueTableBySeason = function (_params) {
-
-            var searchData = footballdataSearchDataService.getNew("getLeagueTableBySeason", _params);
-
-            console.log('league code', _params.id);
-            return $http({
-                method: 'GET',
-                url: '/api/leagues?leagueId=' + _params.id
-                /*              params: searchData.object,
-                 headers: {
-                 'X-Auth-Token': _params.apiKey ? _params.apiKey : apiKey,
-                 }*/
-            });
-        };
-        /*
-         footballdataFactory.getLeagueTableBySeason = function (_params) {
-         var searchData = footballdataSearchDataService.getNew("getLeagueTableBySeason", _params);
-         return $http({
-         method: 'GET',
-         url: searchData.url,
-         params: searchData.object,
-         headers: {
-         'X-Auth-Token': _params.apiKey ? _params.apiKey : apiKey,
-         }
-         });
-         };
-         */
 
         footballdataFactory.getFixturesBySeason = function (_params) {
 
@@ -172,6 +173,7 @@ angular.module("jtt_footballdata", [])
 
         return footballdataFactory;
     }])
+
     .service('footballdataSearchDataService', function () {
         this.getApiBaseUrl = function (protocol) {
 
