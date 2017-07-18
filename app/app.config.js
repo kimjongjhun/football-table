@@ -35,6 +35,11 @@ function routing($stateProvider) {
                     return teamService.getTeamInfo($stateParams.id).then(function(data){
                         return data.data;
                     });
+                },
+                players: function($stateParams, squadService) {
+                    return squadService.getPlayers($stateParams.id).then(function(data){
+                        return data.data;
+                    });
                 }
             }
         })

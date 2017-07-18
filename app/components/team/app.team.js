@@ -3,9 +3,9 @@
  */
 
 angular.module('footballApp')
-    .controller('TeamController', ['$state', 'appService', 'teaminfo', teamController]);
+    .controller('TeamController', ['$state', 'appService', 'teaminfo', 'players', teamController]);
 
-function teamController($state, appService, teaminfo) {
+function teamController($state, appService, teaminfo, players) {
     var vm = this;
     vm.id = appService.leagueCode;
 
@@ -17,6 +17,7 @@ function teamController($state, appService, teaminfo) {
     function load() {
         vm.selectedTeam = teaminfo;
         vm.selectedTeam.teamId = vm.selectedTeam.apiTeamId;
+        vm.selectedTeam.players = players;
     }
 
     load();

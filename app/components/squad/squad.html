@@ -1,23 +1,29 @@
-<div class="panel panel-default">
+<div class="panel panel-default" ng-repeat="obj in $ctrl.data">
     <div class="panel-heading">
-        Defenders
+        <h3>{{obj.title}}</h3>
     </div>
-    <div class="panel-body">
-        <table class="table table-striped">
-            <thead>
-            <tr>
-                <th>Jersey</th>
-                <th>Name</th>
-                <th>Position</th>
-            </tr>
-            </thead>
-            <tbody>
-            <tr ng-repeat="player in vm.as.defenders">
-                <td>{{player.jerseyNumber}}</td>
-                <td>{{player.name}}</td>
-                <td>{{player.position}}</td>
-            </tr>
-            </tbody>
-        </table>
+    <div ng-show="obj.players.length">
+        <div class="panel-body">
+            <table class="table table-striped">
+                <thead>
+                <tr>
+                    <th>Number</th>
+                    <th>Name</th>
+                    <th>Nationality</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr ng-repeat="player in obj.players">
+                    <td>{{player.number}}</td>
+                    <td>{{player.name}}</td>
+                    <td>{{player.nationality}}</td>
+                </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+    <div ng-show="!obj.players.length" class="text-center">
+        <h3>No Players Found at This Position</h3>
     </div>
 </div>

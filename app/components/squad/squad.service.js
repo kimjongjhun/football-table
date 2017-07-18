@@ -11,7 +11,9 @@ function squadService(footballdataFactory) {
         getPlayers: getPlayers
     });
 
-    function getPlayers() {
-        console.log('going to get players');
+    function getPlayers(id) {
+        return footballdataFactory.getPlayersByTeam({
+            id: id
+        });
     }
 }

@@ -94,13 +94,13 @@ app.get('/api/matches', function (req, res) {
 app.get('/api/players', function (req, res) {
     var searchObj = {};
 
-    if (req.query.firstName) {
-        searchObj.firstName = req.query.firstName;
+    if (req.query.teamId) {
+        searchObj.teamId = Number(req.query.teamId);
     }
 
     Player.find(searchObj).lean().exec(function (error, doc) {
         if (error) {
-            return res.status(500).send('ooops');
+            return res.status(500).send('player error');
         }
 
         res.json(doc);

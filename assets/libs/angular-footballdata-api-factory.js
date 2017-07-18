@@ -60,13 +60,10 @@ angular.module("jtt_footballdata", [])
 
             var searchData = footballdataSearchDataService.getNew("getPlayersByTeam", _params);
 
+            console.log(_params.id);
             return $http({
                 method: 'GET',
-                url: searchData.url,
-                params: searchData.object,
-                headers: {
-                    'X-Auth-Token': _params.apiKey ? _params.apiKey : apiKey,
-                }
+                url: '/api/players?teamId=' + _params.id
             });
         };
 
@@ -86,20 +83,6 @@ angular.module("jtt_footballdata", [])
                  }*/
             });
         };
-
-        /*
-         footballdataFactory.getLeagueTableBySeason = function (_params) {
-         var searchData = footballdataSearchDataService.getNew("getLeagueTableBySeason", _params);
-         return $http({
-         method: 'GET',
-         url: searchData.url,
-         params: searchData.object,
-         headers: {
-         'X-Auth-Token': _params.apiKey ? _params.apiKey : apiKey,
-         }
-         });
-         };
-         */
 
         footballdataFactory.getSeason = function (_params) {
 

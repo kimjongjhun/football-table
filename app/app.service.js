@@ -54,7 +54,7 @@ function appService(footballdataFactory, tableService) {
         forward: [{
             lw: [],
             rw: [],
-            cf: [],
+            cf: []
         }]
     };
     vm.keepers = [];
@@ -62,8 +62,6 @@ function appService(footballdataFactory, tableService) {
     vm.midfielders = [];
     vm.forwards = [];
 
-    vm.formatInfo = formatInfo;
-    vm.formatMatches = formatMatches;
     vm.formatSquad = formatSquad;
     vm.formatSquadList = formatSquadList;
     vm.getSquad = getSquad;
@@ -75,25 +73,6 @@ function appService(footballdataFactory, tableService) {
     vm.load = load;
     vm.setTeamId = setTeamId;
     vm.test = test;
-
-    function formatInfo() {
-    }
-
-    function formatMatches() {
-        vm.pastMatches = vm.teamMatches.filter(function (value) {
-            return value.status == "FINISHED";
-        });
-        vm.futureMatches = vm.teamMatches.filter(function (value) {
-            return value.status == "TIMED";
-        });
-        vm.futureMatches = vm.teamMatches.filter(function (value) {
-            return value.status == null;
-        });
-
-        vm.pastMatches = vm.pastMatches.reverse();
-        vm.pastCollection = vm.pastMatches;
-        vm.futureCollection = vm.futureMatches;
-    }
 
     function getCurrentMatches() {
         console.log(vm);
@@ -179,25 +158,12 @@ function appService(footballdataFactory, tableService) {
         });
     }
 
-/*    function goTable(id) {
-        vm.league = id;
-        vm.fbdf.getLeagueTableBySeason({
-            id: vm.league,
-            apiKey: config.MY_KEY
-        }).then(function (_data) {
-            vm.leagueTable = _data.data.standing;
-        }).catch(function (_data) {
-
-        });
-    }*/
-
     function goTeam(team) {
         if (typeof team != 'number') {
             console.log('help');
             vm.setTeamId(team);
         } else {
             console.log('i am chapi');
-            vm.getTeamMatches(team);
             vm.selectedTeam = team;
             console.log('team', vm.selectedTeam);
 
@@ -205,7 +171,6 @@ function appService(footballdataFactory, tableService) {
     }
 
     function load() {
-
         if (vm.landingTeam.length < 15) {
             vm.landingTeam = [];
             vm.landingList.forEach(function (p1) {
@@ -216,10 +181,8 @@ function appService(footballdataFactory, tableService) {
 
     function setTeamId(team) {
         vm.teamId = team._links.team.href.slice(38);
-        vm.getTeamMatches(vm.teamId);
         console.log(vm.teamId);
         vm.getSquad(vm.teamId);
-        vm.formatInfo();
     }
 
     function test() {

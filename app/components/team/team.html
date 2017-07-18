@@ -41,16 +41,8 @@
         <match-table unfilt-matches="vm.selectedTeam.matches" type="'Past'"></match-table>
         <match-table unfilt-matches="vm.selectedTeam.matches" type="'Future'"></match-table>
     </div>
-        <!--<div class="row" ng-controller="MatchController as mc">-->
-        <!--<div class="col-md-6">-->
-            <!--<div ng-include="'components/match/pastMatch.html'"></div>-->
-        <!--</div>-->
-        <!--<div class="col-md-6">-->
-            <!--<div ng-include="'components/match/futureMatch.html'"></div>-->
-        <!--</div>-->
-    <!--</div>-->
     <hr/>
-    <div class="row">
-        <div ng-include="'components/squad/squad.html'"></div>
+    <div class="row" ng-if="vm.selectedTeam.teamId > 0">
+        <squad unfilt-players="vm.selectedTeam.players"></squad>
     </div>
 </div>
