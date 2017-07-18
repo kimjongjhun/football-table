@@ -26,13 +26,15 @@ function routing($stateProvider) {
             }
         })
         .state('team', {
-            url: '/team/:id/{teaminfo:json}',
+            url: '/team/:id',
             templateUrl: 'components/team/team.html',
             controller: 'TeamController',
             controllerAs: 'vm',
             resolve: {
                 teaminfo: function($stateParams, teamService) {
-                    return $stateParams.teaminfo;
+                    return teamService.getTeamInfo($stateParams.id).then(function(data){
+                        return data.data;
+                    });
                 }
             }
         })

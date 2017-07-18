@@ -1,6 +1,51 @@
 const express = require('express');
 const request = require('request');
 const app = express();
+var mongoose = require('mongoose');
+var cron = require('node-cron');
+
+
+mongoose.connect('mongodb://footyuser:testpassword@ds121622.mlab.com:21622/footytables?readPreference=primary');
+
+var playerSchema = new mongoose.Schema({
+    apiTeamId: Number,
+    name: String,
+    position: String,
+    number: Number,
+    dob: String,
+    nationality: String,
+    updatedAt: {type: Date, default: Date.now},
+    createdAt: {type: Date, default: Date.now}
+}, {strict: false});
+var Player = mongoose.model('Player', playerSchema);
+
+var teamSchema = new mongoose.Schema({
+    apiTeamId: Number,
+    apiLeagueId: Number,
+    name: String,
+    position: Number,
+    wins: Number,
+    draws: Number,
+    losses: Number,
+    points: Number,
+    crestUrl: String,
+    matches: Array,
+    updatedAt: {type: Date},
+    updates: {
+        players: Date,
+        matches: Date
+    }
+}, {strict: false});
+var Team = mongoose.model('Team', teamSchema);
+
+var leagueSchema = new mongoose.Schema({
+    apiId: Number,
+    updatedAt: Date
+}, {strict: false});
+var League = mongoose.model('League', leagueSchema);
+
+
+require('./config/cron')(cron);
 
 app.use(express.static('app'));
 app.use("/assets", express.static('assets'));
@@ -13,68 +58,70 @@ app.get('/', function (req, res) {
 
 // For the landing page
 app.get('/api/teams', function (req, res) {
-    return request({
-        method: 'GET',
-        uri: 'http://api.football-data.org/v1/teams/' + req.query.teamId + '?apiKey=c686861cae884c8596fad08aea92403c',
-        headers: {
-            'X-Auth-Token': 'c686861cae884c8596fad08aea92403c'
-        }
-    }, function (err, obj) {
-        if (err) {
-            res.error(err);
-        }
 
-        res.json(JSON.parse(obj.body));
+    var searchObj = {};
 
+    if (req.query.teamId) {
+        searchObj.apiTeamId = req.query.teamId
+    }
+
+    Team.findOne(searchObj).lean().exec(function(error, obj) {
+        if (error) {
+            return res.status(500).send('match error');
+        }
+        res.json(obj);
     });
 });
 
 // For past and future match lists
 app.get('/api/matches', function (req, res) {
-    return request({
-        method: 'GET',
-        uri: 'http://api.football-data.org/v1/teams/' + req.query.teamId + '/fixtures?apiKey=c686861cae884c8596fad08aea92403c',
+    var searchObj = {};
+    if (req.query.teamId) {
+        searchObj.apiTeamId = req.query.teamId
+    }
 
-        headers: {
-            'X-Auth-Token': 'c686861cae884c8596fad08aea92403c'
+    Team.findOne(searchObj).lean().exec(function (error, obj) {
+        if (error) {
+            return res.status(500).send('match error');
         }
 
-    }, function (err, obj) {
-        if (err) {
-            res.error(err);
-        }
-        res.json(JSON.parse(obj.body));
-    });
+        res.json(obj.matches);
+    })
 });
 
 // @TODO
 // Finish out player lists
 app.get('/api/players', function (req, res) {
-    return request({
-        method: 'GET',
-        uri: '',
-        headers: {
-            'X-Auth-Token': 'c686861cae884c8596fad08aea92403c'
+    var searchObj = {};
+
+    if (req.query.firstName) {
+        searchObj.firstName = req.query.firstName;
+    }
+
+    Player.find(searchObj).lean().exec(function (error, doc) {
+        if (error) {
+            return res.status(500).send('ooops');
         }
-    }, function (err, obj) {
-        if (err) {
-            res.error(err);
-        }
-        res.json(JSON.parse(obj.body));
-    })
+
+        res.json(doc);
+    });
 });
 
 // @TODO
 // Get this working
 app.get('/api/leagues', function (req, res) {
-    return request({
-        method: 'GET',
-        uri: 'http://api.football-data.org/v1/soccerseasons/' + req.query.id + '/leagueTable?apiKey=c686861cae884c8596fad08aea92403c',
-        headers: {
-            'X-Auth-Token': 'c686861cae884c8596fad08aea92403c'
+    var searchObj = {};
+
+    if (req.query.leagueId) {
+        searchObj.apiId = req.query.leagueId;
+    }
+
+    League.findOne(searchObj).lean().exec(function (error, doc) {
+        if (error) {
+            return res.status(500).send('league error');
         }
-    }, function (err, obj) {
-        res.json(JSON.parse(obj.body));
+
+        res.json(doc);
     })
 });
 

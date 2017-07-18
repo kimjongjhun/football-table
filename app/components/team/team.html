@@ -1,6 +1,6 @@
 <div class="col-md-3 text-center">
     {{vm.leagueTable}}
-    <img src={{vm.selectedTeam.crestURI}} width="250">
+    <img ng-src={{vm.selectedTeam.crestUrl}} width="250">
     <br/>
     <br/>
     <button class="btn btn-primary" type="button" ng-click="vm.goBack()">Back to League table</button>
@@ -37,9 +37,9 @@
         </div>
     </div>
     <hr/>
-    <div ng-if="vm.selectedTeam.teamId > 0">
-        <match-table team-id="vm.selectedTeam.teamId" type="'Past'"></match-table>
-        <match-table team-id="vm.selectedTeam.teamId" type="'Future'"></match-table>
+    <div class="row" ng-if="vm.selectedTeam.teamId > 0">
+        <match-table unfilt-matches="vm.selectedTeam.matches" type="'Past'"></match-table>
+        <match-table unfilt-matches="vm.selectedTeam.matches" type="'Future'"></match-table>
     </div>
         <!--<div class="row" ng-controller="MatchController as mc">-->
         <!--<div class="col-md-6">-->

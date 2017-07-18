@@ -4,15 +4,14 @@
 angular.module('footballApp',
     ['ui.router', 'jtt_footballdata', 'smart-table'])
 
-    .controller('MainController', ['$state', 'appService', 'footballdataFactory', 'TableData', mainController]);
+    .controller('MainController', ['$state', 'appService', 'footballdataFactory', mainController]);
 
-function mainController($state, appService, footballdataFactory, TableData) {
+function mainController($state, appService, footballdataFactory) {
     var vm = this;
     vm.as = appService;
     vm.fbdf = footballdataFactory;
 
     vm.testVar;
-    vm.testLeague = TableData;
     // vm.views = "landing";
 
     // vm.league = vm.as.league;

@@ -15,6 +15,6 @@ function tableController($state, TableData) {
 
     function goTeam(team){
         var id = team._links.team.href.slice(38);
-        $state.go('team', {id:id, teaminfo: team});
+        $state.go('team', {id:id});
     }
 }

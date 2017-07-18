@@ -5,14 +5,14 @@
 angular.module('footballApp')
     .component('matchTable', {
         bindings: {
-            teamId: '<',
+            unfiltMatches: '<',
             type: '<'
         },
-        controller: ['matchService', matchController],
+        controller: [matchController],
         templateUrl: './components/match/match.html'
     });
 
-function matchController(matchService) {
+function matchController() {
     var vm = this;
 
     angular.extend(vm, {
@@ -20,10 +20,21 @@ function matchController(matchService) {
     });
 
     function $onInit() {
-        matchService.getTeamMatches(vm.teamId, vm.type)
-            .then(function (data) {
-                vm.matches = data;
-                vm.matchCollection = data;
-            })
+        vm.matches = filterMatches(vm.unfiltMatches, vm.type);
+        vm.matchCollection = vm.matches;
+    }
+
+    function filterMatches(matches, type){
+        if (type === 'Past') {
+            return matches.filter(function (value) {
+                return value.status === 'FINISHED';
+            }).reverse();
+        } else if (type === 'Future'){
+            return matches.filter(function (value) {
+                return value.status === 'TIMED' || value.status == null;
+            });
+        } else {
+            return [];
+        }
     }
 }
