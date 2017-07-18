@@ -3,9 +3,11 @@
  */
 
 angular.module('footballApp')
-    .config(['$stateProvider', routing]);
+    .config(['$stateProvider', '$urlRouterProvider', routing]);
 
-function routing($stateProvider) {
+function routing($stateProvider, $urlRouterProvider) {
+    $urlRouterProvider.otherwise('/home');
+
     $stateProvider
         .state('home', {
             url: '/home',
