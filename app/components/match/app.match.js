@@ -24,14 +24,14 @@ function matchController() {
         vm.matchCollection = vm.matches;
     }
 
-    function filterMatches(matches, type){
+    function filterMatches(matches, type) {
         if (type === 'Past') {
             return matches.filter(function (value) {
                 return value.status === 'FINISHED';
             }).reverse();
-        } else if (type === 'Future'){
+        } else if (type === 'Future') {
             return matches.filter(function (value) {
-                return value.status === 'TIMED' || value.status == null;
+                return value.status === 'TIMED' || value.status === 'SCHEDULED' || value.status == null;
             });
         } else {
             return [];

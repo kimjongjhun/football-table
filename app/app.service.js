@@ -75,7 +75,7 @@ function appService(footballdataFactory, tableService) {
     vm.test = test;
 
     function getCurrentMatches() {
-        console.log(vm);
+        // console.log(vm);
     }
 
     // @TODO
@@ -115,7 +115,7 @@ function appService(footballdataFactory, tableService) {
     function formatSquadList() {
         vm.keepers.concat(vm.squadList.keeper);
         vm.defenders.concat(vm.squadList.defender.cb) /* , vm.squadList.defender.lb, vm.squadList.defender.rb)*/;
-        console.log(vm.defenders);
+        // console.log(vm.defenders);
         vm.midfielders.concat(vm.squadList.midfield.dm, vm.squadList.midfield.cm);
         vm.forwards.concat(vm.squadList.forward.lw, vm.squadList.forward.rw, vm.squadList.forward.cf);
     }
@@ -150,22 +150,22 @@ function appService(footballdataFactory, tableService) {
 
     function goTable(id) {
         vm.league = id;
-        console.log('in app service');
+        // console.log('in app service');
         return footballdataFactory.getLeagueTableBySeason({
             leagueId: id
         }).then(function (_data) {
-            console.log(_data.data);
+            // console.log(_data.data);
         });
     }
 
     function goTeam(team) {
-        if (typeof team != 'number') {
-            console.log('help');
+        if (typeof team !== 'number') {
+            // console.log('help');
             vm.setTeamId(team);
         } else {
-            console.log('i am chapi');
+            // console.log('i am chapi');
             vm.selectedTeam = team;
-            console.log('team', vm.selectedTeam);
+            // console.log('team', vm.selectedTeam);
 
         }
     }
@@ -181,11 +181,11 @@ function appService(footballdataFactory, tableService) {
 
     function setTeamId(team) {
         vm.teamId = team._links.team.href.slice(38);
-        console.log(vm.teamId);
+        // console.log(vm.teamId);
         vm.getSquad(vm.teamId);
     }
 
     function test() {
-        console.log("test");
+        // console.log("test");
     }
 }

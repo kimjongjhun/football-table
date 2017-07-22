@@ -21,9 +21,9 @@ serie a
     108 - fc internazionale milano
 -->
 
-<div id="landing" data-columns class="col-md-10 col-md-offset-1" ng-init="vm.as.load()">
-    <div class="column size-1of6" ng-repeat="team in vm.as.landingTeam">
-        <a class="thumbnail" role="button" ng-click="vm.test(team.id)">
+<div id="landing" data-columns class="col-md-10 col-md-offset-1" ng-init="vm.load()">
+    <div class="column size-1of6" ng-repeat="team in vm.landingTeam">
+        <a class="thumbnail" role="button" ng-click="vm.goTeam(team.id, team.league)">
             <img src="{{team.crestUrl}}" width="100px"/>
         </a>
     </div>

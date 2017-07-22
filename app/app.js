@@ -21,7 +21,7 @@ function mainController($state, appService, footballdataFactory) {
     function goTable(id) {
         vm.testVar = id;
         vm.as.leagueCode = id;
-        console.log(vm.as.leagueCode);
+        // console.log(vm.as.leagueCode);
         $state.go('league', {id: id, TableData: id});
     }
     // $state.go('home');

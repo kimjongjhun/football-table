@@ -11,9 +11,18 @@ function routing($stateProvider, $urlRouterProvider) {
     $stateProvider
         .state('home', {
             url: '/home',
-            templateUrl: 'components/landing/landing.html',
-            controller: 'MainController',
-            controllerAs: 'vm'
+            component: 'landing',
+            resolve: {
+                landingList: function(appService) {
+                    return appService.landingList;
+                }
+            }
+
+
+
+            // templateUrl: 'components/landing/landing.html',
+            // controller: 'MainController',
+            // controllerAs: 'vm'
         })
         .state('league', {
             url: '/league/:id',
@@ -22,7 +31,7 @@ function routing($stateProvider, $urlRouterProvider) {
             controllerAs: 'vm',
             resolve: {
                 TableData: function($stateParams, tableService) {
-                    console.log('in app.config', $stateParams.id);
+                    // console.log('in app.config', $stateParams.id);
                     return tableService.getLeagueData($stateParams.id);
                 }
             }

@@ -23,6 +23,7 @@ var teamSchema = new mongoose.Schema({
     apiTeamId: Number,
     apiLeagueId: Number,
     name: String,
+    shortName: String,
     position: Number,
     wins: Number,
     draws: Number,

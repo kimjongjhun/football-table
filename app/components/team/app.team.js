@@ -7,6 +7,7 @@ angular.module('footballApp')
 
 function teamController($state, appService, teaminfo, players) {
     var vm = this;
+
     vm.id = appService.leagueCode;
 
     angular.extend(vm, {
@@ -23,6 +24,10 @@ function teamController($state, appService, teaminfo, players) {
     load();
 
     function goBack() {
-        $state.go('league', {id: vm.id});
+        if (vm.id === 0){
+            $state.go('home');
+        } else if (vm.id !== 0) {
+            $state.go('league', {id: vm.id});
+        }
     }
 }

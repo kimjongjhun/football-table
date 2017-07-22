@@ -151,6 +151,7 @@ function pullTeamsFromLeagues() {
                     points: team.points,
                     position: team.position,
                     name: team.teamName,
+                    shortName: team.shortName,
                     crestUrl: team.crestURI,
                     apiTeamId: teamId,
                     apiLeagueId: league.apiId

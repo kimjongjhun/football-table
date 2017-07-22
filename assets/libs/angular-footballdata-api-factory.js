@@ -60,7 +60,7 @@ angular.module("jtt_footballdata", [])
 
             var searchData = footballdataSearchDataService.getNew("getPlayersByTeam", _params);
 
-            console.log(_params.id);
+            // console.log(_params.id);
             return $http({
                 method: 'GET',
                 url: '/api/players?teamId=' + _params.id
@@ -73,7 +73,7 @@ angular.module("jtt_footballdata", [])
 
             var searchData = footballdataSearchDataService.getNew("getLeagueTableBySeason", _params);
 
-            console.log('league code', _params.id);
+            // console.log('league code', _params.id);
             return $http({
                 method: 'GET',
                 url: '/api/leagues?leagueId=' + _params.id
