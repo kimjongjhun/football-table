@@ -5,7 +5,7 @@ var mongoose = require('mongoose');
 var cron = require('node-cron');
 
 
-mongoose.connect('mongodb://footyuser:testpassword@ds121622.mlab.com:21622/footytables?readPreference=primary');
+mongoose.connect(process.env.MONGO_URI);
 
 var playerSchema = new mongoose.Schema({
     apiTeamId: Number,
