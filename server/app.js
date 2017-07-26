@@ -55,7 +55,8 @@ require('./api/teams/index')(app);
 
 app.get('/', function (req, res) {
     console.log(__dirname + '/../app');
-    app.use(express.static(__dirname + '/../app'));
+    //app.use();
+    res.sendFile("index.html", {root: __dirname + '/../app'});
 });
 
 // For the landing page
