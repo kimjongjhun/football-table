@@ -7,6 +7,21 @@ var cron = require('node-cron');
 console.log('process.env.MONGO_URI:', process.env.MONGO_URI);
 mongoose.connect(process.env.MONGO_URI);
 
+// When successfully connected
+mongoose.connection.on('connected', function () {
+    console.log('Mongoose default connection open to ', process.env.MONGO_URI);
+});
+
+// If the connection throws an error
+mongoose.connection.on('error',function (err) {
+    console.log('Mongoose default connection error: ' + err);
+});
+
+// When the connection is disconnected
+mongoose.connection.on('disconnected', function () {
+    console.log('Mongoose default connection disconnected');
+});
+
 var playerSchema = new mongoose.Schema({
     apiTeamId: Number,
     name: String,
