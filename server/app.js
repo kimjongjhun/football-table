@@ -54,6 +54,7 @@ app.use("/assets", express.static('assets'));
 require('./api/teams/index')(app);
 
 app.get('/', function (req, res) {
+    console.log(__dirname + '../app');
     app.use(express.static(__dirname + '../app'));
 });
 
