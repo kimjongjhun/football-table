@@ -49,7 +49,7 @@ var League = mongoose.model('League', leagueSchema);
 require('./config/cron')(cron);
 
 app.use(express.static(__dirname + '/../app'));
-app.use("/assets", express.static('assets'));
+app.use("/assets", express.static(__dirname + '/../assets'));
 
 require('./api/teams/index')(app);
 
