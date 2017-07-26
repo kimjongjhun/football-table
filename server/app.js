@@ -4,7 +4,7 @@ const app = express();
 var mongoose = require('mongoose');
 var cron = require('node-cron');
 
-
+console.log('process.env.MONGO_URI:', process.env.MONGO_URI);
 mongoose.connect(process.env.MONGO_URI);
 
 var playerSchema = new mongoose.Schema({
