@@ -53,7 +53,7 @@ function landingController($state, appService, footballdataFactory) {
         };
         vm.fbdf.getTeam({
             id: teamId,
-            apiKey: config.MY_KEY
+            // apiKey: config.MY_KEY
         }).then(function (_data) {
             team.id = teamId;
             team.league = _data.data.apiLeagueId;
