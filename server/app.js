@@ -48,7 +48,7 @@ var League = mongoose.model('League', leagueSchema);
 
 require('./config/cron')(cron);
 
-app.use(express.static('app'));
+app.use(express.static(__dirname + '/../app'));
 app.use("/assets", express.static('assets'));
 
 require('./api/teams/index')(app);
