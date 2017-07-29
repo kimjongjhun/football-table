@@ -5,7 +5,7 @@ var mongoose = require('mongoose');
 var cron = require('node-cron');
 
 console.log('process.env.MONGO_URI:', process.env.MONGO_URI);
-mongoose.connect(process.env.MONGO_URI);
+mongoose.connect(/*process.env.MONGO_URI*/ 'mongodb://footyproduser:T83WYb13BRRfvV@ds121622.mlab.com:21622/footytables?readPreference=primary');
 
 // When successfully connected
 mongoose.connection.on('connected', function () {
@@ -144,6 +144,6 @@ app.get('/api/leagues', function (req, res) {
 });
 
 
-app.listen(1488, function () {
+app.listen(3000, function () {
     console.log('Example app listening on port 3000!')
 });

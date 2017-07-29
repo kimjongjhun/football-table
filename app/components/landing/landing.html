@@ -20,7 +20,11 @@ serie a
     98 - ac milan
     108 - fc internazionale milano
 -->
-
+<p class="text-center">
+    Click on a league above to go see the table,
+    <br>
+    or click on your favourite team below to go to the team's page.
+</p>
 <div id="landing" data-columns class="col-md-10 col-md-offset-1" ng-init="vm.load()">
     <div class="column size-1of6" ng-repeat="team in vm.landingTeam">
         <a class="thumbnail" role="button" ng-click="vm.goTeam(team.id, team.league)">
