@@ -13,6 +13,7 @@ function mainController($state, appService, footballdataFactory) {
 
     vm.goHome = goHome;
     vm.goTable = goTable;
+    vm.searchTeam = searchTeam;
 
     function goHome() {
         $state.go('home');
@@ -25,4 +26,8 @@ function mainController($state, appService, footballdataFactory) {
         $state.go('league', {id: id, TableData: id});
     }
     // $state.go('home');
+
+    function searchTeam(searchTeam) {
+        console.log('searching for team:', searchTeam);
+    }
 }
