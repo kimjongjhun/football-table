@@ -1,30 +1,31 @@
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/css/bootstrap.css"/>
-
 <nav class="navbar navbar-default">
-    <div class="container-fluid">
+    <div class="container-fluid grid">
+
         <div class="navbar-header">
             <a class="navbar-brand">
                 <img src="/assets/img/girpy_logo.png" height="100" role="button" ng-click="vm.goHome()"/>
             </a>
         </div>
-            <ul class="nav nav-tabs navbar-nav">
-                <li role="presentation"><a role="button" ng-click="vm.goTable(452)">Bundesliga</a></li>
-                <li role="presentation"><a role="button" ng-click="vm.goTable(455)">La Liga</a></li>
-                <li role="presentation"><a role="button" ng-click="vm.goTable(450)">Ligue 1</a></li>
-                <li role="presentation"><a role="button" ng-click="vm.goTable(445)">Premier League</a></li>
-                <li role="presentation"><a role="button" ng-click="vm.goTable(438)">Serie A</a></li>
-            </ul>
 
-            <form class="navbar-form navbar-right" role="search">
-                <div class="form-group">
-                    <input type="text" class="form-control" placeholder="Search For A Team ... " ng-model="searchTeam">
-                </div>
-                <button type="submit" class="btn btn-default" ng-click="vm.searchTeam(searchTeam)">Search</button>
-            </form>
+        <ul class="nav nav-tabs navbar-nav">
+            <li role="presentation"><a role="button" ng-click="vm.goTable(452)">Bundesliga</a></li>
+            <li role="presentation"><a role="button" ng-click="vm.goTable(455)">La Liga</a></li>
+            <li role="presentation"><a role="button" ng-click="vm.goTable(450)">Ligue 1</a></li>
+            <li role="presentation"><a role="button" ng-click="vm.goTable(445)">Premier League</a></li>
+            <li role="presentation"><a role="button" ng-click="vm.goTable(438)">Serie A</a></li>
+        </ul>
+
+        <form class="navbar-form navbar-right" role="search">
+            <div class="form-group">
+                <input type="text" class="form-control" placeholder="Search For A Team ... " ng-model="searchTeam">
+            </div>
+            <button type="submit" class="btn btn-default" ng-click="vm.searchTeam(searchTeam)">Search</button>
+        </form>
 
     </div>
 </nav>
 
-<div class="container-fluid">
+
+<div class="container-fluid view">
     <div ui-view></div>
 </div>

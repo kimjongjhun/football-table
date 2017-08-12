@@ -1,0 +1,19 @@
+.grid {
+    display: grid;
+    grid-template-columns: auto auto auto;
+    grid-template-areas:
+    "logo navbar search"
+;
+}
+
+.navbar-header {
+    grid-area: logo;
+}
+
+.navbar-nav {
+    grid-area: navbar;
+}
+
+.navbar-right {
+    grid-area: search;
+}
