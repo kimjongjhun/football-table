@@ -2,7 +2,7 @@
     display: grid;
     grid-template-columns: auto auto auto;
     grid-template-areas:
-    "logo navbar search"
+    "logo leagues search"
 ;
 }
 
@@ -11,9 +11,16 @@
 }
 
 .navbar-nav {
-    grid-area: navbar;
+    grid-area: leagues;
 }
 
 .navbar-right {
     grid-area: search;
+}
+.navbar .navbar-brand {
+    padding-top: 0px;
+}
+
+a:hover {
+    background-color: skyblue;
 }
