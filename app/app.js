@@ -28,6 +28,8 @@ function mainController($state, appService, footballdataFactory) {
     // $state.go('home');
 
     function searchTeam(searchTeam) {
-        console.log('searching for team:', searchTeam);
+        if (searchTeam) {
+            console.log('searching for team:', searchTeam);
+        }
     }
 }
