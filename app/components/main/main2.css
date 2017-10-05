@@ -1,9 +1,26 @@
+/*.dark-primary-color    { background: #455A64; }*/
+/*.default-primary-color { background: #607D8B; }*/
+/*.light-primary-color   { background: #CFD8DC; }*/
+/*.text-primary-color    { color: #FFFFFF; }*/
+/*.accent-color          { background: #8BC34A; }*/
+/*.primary-text-color    { color: #212121; }*/
+/*.secondary-text-color  { color: #757575; }*/
+/*.divider-color         { border-color: #BDBDBD; }*/
+
+body {
+    background-color: #CFD8DC;
+}
+
 .grid {
     display: grid;
     grid-template-columns: auto auto auto;
     grid-template-areas:
     "logo leagues search"
 ;
+}
+
+#navbar {
+    background-color: #455A64;
 }
 
 .navbar-header {
@@ -22,5 +39,34 @@
 }
 
 a:hover {
-    background-color: skyblue;
+    background-color: #455A64;
+}
+
+.navbar-default .navbar-nav li a {
+    color: #FFFFFF;
+}
+.navbar-default .navbar-nav li a:hover {
+    color: #CFD8DC;
+    background-color: #607D8B;
+}
+
+.navbar-header .navbar-brand img:hover {
+    background-color: #607D8B;
+}
+
+#table {
+    background-color: #CFD8DC;
+}
+.table-striped tbody tr:nth-of-type(odd) {
+    background-color: #BDBDBD;
+}
+.table-striped tbody tr:nth-of-type(even) {
+    background-color: #CFD8DC;
+}
+.table-hover tbody tr {
+    color: #212121;
+}
+.table-hover tbody tr:hover:hover {
+    color: #FFFFFF;
+    background-color: #455A64;
 }
