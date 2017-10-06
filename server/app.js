@@ -43,6 +43,7 @@ var teamSchema = new mongoose.Schema({
     wins: Number,
     draws: Number,
     losses: Number,
+    goalDifference: Number,
     points: Number,
     crestUrl: String,
     matches: Array,
