@@ -148,6 +148,7 @@ function pullTeamsFromLeagues() {
                     wins: team.wins,
                     losses: team.losses,
                     draws: team.draws,
+                    goalDifference: team.goalDifference,
                     points: team.points,
                     position: team.position,
                     name: team.teamName,
